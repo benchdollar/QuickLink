@@ -109,6 +109,7 @@
     <None Include="artifact-Requirement.png" />
     <None Include="artifact-Incident.png" />
     <None Include="app-icon-SpiraPlan-192x192.png" />
+    <None Include="artifact-TestCase.png" />
     <Content Include="SpiraPlan-FavIcon.ico" />
   </ItemGroup>
   <ItemGroup>

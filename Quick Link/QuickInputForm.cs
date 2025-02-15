@@ -10,8 +10,8 @@ namespace QuickLink
     {
         private const int CP_NOCLOSE_BUTTON = 0x200;
 
-        private readonly string ticketPattern = @"^(rq|in)?(\d+)$";
-        private enum TicketType { REQUIREMENT, INCIDENT };
+        private readonly string ticketPattern = @"^(rq|in|tc)?(\d+)$";
+        private enum TicketType { REQUIREMENT, INCIDENT, TESTCASE };
 
         public QuickInputForm()
         {
@@ -99,6 +99,10 @@ namespace QuickLink
                         TicketIcon.Image = Resources.Incident;
                         TicketIcon.Visible = true;
                     }
+                    else if (type.Equals("tc")) {
+                        TicketIcon.Image = Resources.TestCase;
+                        TicketIcon.Visible = true;
+                    } 
                     else
                     {
                         TicketIcon.Image = Resources.Requirement;
@@ -117,6 +121,10 @@ namespace QuickLink
             if (ticketType == TicketType.INCIDENT)
             {
                 return String.Format("https://safelog.spiraservice.net/{0}/Incident/{1}/Overview.aspx", projectId, ticketId);
+            }
+            else if (ticketType == TicketType.TESTCASE)
+            {
+                return String.Format("https://safelog.spiraservice.net/{0}/TestCase/{1}/Overview.aspx", projectId, ticketId);
             }
             else
             {
@@ -140,6 +148,12 @@ namespace QuickLink
                 else if (type.Equals("in"))
                 {
                     ticketType = TicketType.INCIDENT;
+                    number = validatedTicketString.Substring(2);
+
+                }
+                else if (type.Equals("tc"))
+                {
+                    ticketType = TicketType.TESTCASE;
                     number = validatedTicketString.Substring(2);
 
                 }
