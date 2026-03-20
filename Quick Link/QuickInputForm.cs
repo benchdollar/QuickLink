@@ -168,8 +168,30 @@ namespace QuickLink
             }
             string url = CreateSpiraUrl(ticketType, "1011", number);
             Console.WriteLine("Opening {0}", url);
-            Process.Start(url);
+            OpenUrl(url);
         }
 
+        private void OpenUrl(string url)
+        {
+            if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                Console.WriteLine("Invalid URL: " + url);
+                return;
+            }
+
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error opening URL: " + ex.Message);
+            }
+        }
     }
 }
