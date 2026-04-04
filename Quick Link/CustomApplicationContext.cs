@@ -1,10 +1,12 @@
 ﻿using QuickLink.Properties;
 using System;
 using System.Diagnostics;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace QuickLink
 {
+    [SupportedOSPlatform("windows")]
     class CustomApplicationContext : ApplicationContext
     {
         private NotifyIcon trayIcon;
@@ -27,11 +29,10 @@ namespace QuickLink
                     }
                 },
                 Visible = true,
-
             };
             trayIcon.MouseClick += new MouseEventHandler(OnLeftClick);
 
-            hotkey.KeyPressed += new EventHandler<KeyPressedEventArgs>((object sender, KeyPressedEventArgs e) => ShowQuickInputForm());
+            hotkey.KeyPressed += (sender, e) => ShowQuickInputForm();
             hotkey.RegisterHotKey(ModifierKeys.Control | ModifierKeys.Win, Keys.R);
         }
 

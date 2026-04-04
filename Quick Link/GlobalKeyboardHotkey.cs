@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace QuickLink
 {
+    [SupportedOSPlatform("windows")]
     public sealed class GlobalKeyboardHotkey : IDisposable
     {
         // Registers a hot key with Windows.
@@ -65,7 +67,7 @@ namespace QuickLink
         public GlobalKeyboardHotkey()
         {
             // register the event of the inner native window.
-            _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args)
+            _window.KeyPressed += (sender, args) =>
             {
                 if (KeyPressed != null)
                     KeyPressed(this, args);

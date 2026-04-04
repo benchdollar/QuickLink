@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
@@ -10,9 +11,12 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Benjamin Knoop")]
 [assembly: AssemblyProduct("Quick Link")]
-[assembly: AssemblyCopyright("Copyright © 2024, 2025")]
+[assembly: AssemblyCopyright("Copyright © 2024-2026, Benjamin Knoop")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+// Diese Assembly ist Windows-spezifisch; reduziert CA1416-Warnungen für Windows-APIs.
+[assembly: SupportedOSPlatform("windows")]
 
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
 // für COM-Komponenten unsichtbar.  Wenn Sie auf einen Typ in dieser Assembly von

@@ -2,10 +2,12 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Runtime.Versioning;
 using QuickLink.Properties;
 
 namespace QuickLink
 {
+    [SupportedOSPlatform("windows")]
     public partial class QuickInputForm : Form
     {
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -16,11 +18,11 @@ namespace QuickLink
         public QuickInputForm()
         {
             InitializeComponent();
-            this.Deactivate += new System.EventHandler((object sender, EventArgs e) => Hide());
-            this.KeyDown += new KeyEventHandler(OnEnterPressed);
+            TopMost = true;
+            Deactivate += (sender, e) => Hide();
+            KeyDown += new KeyEventHandler(OnEnterPressed);
             TextBox.KeyDown += new KeyEventHandler(OnEnterPressed);
             TextBox.Select();
-            this.TopMost = true;
         }
 
         public void ShowAndInitialize()
